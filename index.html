@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Resource Discovery - Improving your visibility in the cloud and elsewhere</title>
+
+		<meta name="description" content="INSERT ABSTRACT HERE">
+		<meta name="author" content="Sean \"Thor\" Swehla">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="images/GOTO_Ams_Intro_Outro.png" data-background-size="100%">
+				</section>
+				<section data-background="images/bart.jpg" data-background-size="auto 100%" data-background-position="left" data-background-color="black" data-position="absolute" data-bottom="0">
+					<h1>Resource Discovery</h1>
+					<h3>Improving your visibility in the cloud and elsewhere</h3>
+					<p>
+					<small>Created by <a href="http://sean.sweh.la">Sean "Thor" Swehla</a> / <a href="http://twitter.com/kitschy_synq">@kitschy_synq</a></small>
+					</p>
+				</section>
+
+				<section data-background="images/who_am_i.jpg" data-background-size="cover">
+				<h2 style="background-color: rgba(0,0,0,0.5);">Who is in the audience?</h2>
+
+					<aside class="notes">
+						How many consider yourselves:
+						<ul>
+							<li>Administrators?</li>
+							<li>Developers?</li>
+							<li>Software Engineers?</li>
+							<li>Operations?</li>
+							<li>DevOps?</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>What is resource discovery?</h2>
+					</section>
+					<section data-background="images/lego_loot.jpg">
+						<h3 style="background-color: rgba(0,0,0,0.5);">Find the pieces</h3>
+					</section>
+					<section data-background="images/transparent_lego.jpg">
+						<h3 style="background-color: rgba(0,0,0,0.5);">physical</h3>
+					</section>
+					<section data-background="images/virtual_lego.png">
+						<h3 style="background-color: rgba(0,0,0,0.5);">virtual</h3>
+					</section>
+					<section>
+						<h3><strike>&nbsp;EVEN&nbsp;</strike></h3>
+						<h2>ESPECIALLY</h2>
+						<p>if you don’t know about them ahead of time</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Why?</h3>
+					</section>
+					<section data-background="images/lost.png" data-background-size="80%">
+					</section>
+					<section id="ops">
+						<h3>Operations</h3>
+						<ul>
+							<li class="fragment">What servers am I managing?
+							<li class="fragment">What services do I support?
+							<li class="fragment">What versions do I have to manage?
+							<li class="fragment">What are the depndencies?
+						</ul>
+					</section>
+					<section id="swe">
+						<h3>Software Engineers</h3>
+						<ul>
+							<li class="fragment">Where is Service X?
+							<li class="fragment">Where is the Service Registry?
+							<li class="fragment">Where am I?
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h2>What you have now</h2>
+				</section>
+				<section>
+				<section data-background="images/nothing.jpg">
+						<h3>nothing</h3>
+					</section>
+					<section data-background="images/bad.jpg">
+						<h3 style="color: black; background: rgba(255, 255, 255, 0.5);">This is bad.</h3>
+					</section>
+					<section>
+						<h3>This is perfectly normal.</h3>
+						<img width="640" height="427" src="images/normal.jpg">
+					</section>
+					<section id="stages">
+						<h3>stages of development</h3>
+						<ul>
+							<li class="fragment">prototype
+							<li class="fragment">initial development (pre-alpha)
+							<li class="fragment">early release
+						</ul>
+					</section>
+					<aside class="notes">
+					<ul>
+						<li> prototype - Who’s going to create a full management stack before they know the project is worth it?
+						<li> initial development - If you’re not making it available yet, why does it matter?
+						<li> early release - It’s available but we haven’t gotten around to managing it, yet. -or- It’s available and we’re so busy supporting it, we don’t have time to implement our management stack.
+					</ul>
+					</aside>
+				</section>
+				<section>
+					<section data-background="images/spreadsheet.jpg">
+						<h3>static references</h3>
+						<span style="font-size: 3em;">&amp;</span>
+						<h3>spreadsheets</h3>
+					</section>
+					<section>
+						<h3>This might be worse.</h3>
+						<img src="images/even_worse.jpg">
+					</section>
+					<section>
+						<h3>This is also perfectly normal.</h3>
+					</section>
+					<section>
+						<h3>You might do this because</h3>
+						<ul id="youmight">
+							<li class="fragment">It's easy
+							<li class="fragment">Your architecture is small
+							<li class="fragment">Deployment is easy
+						</ul>
+						<p class="fragment">(or you're really good at it)</p>
+					</section>
+					<aside class="notes">
+						<ul>
+							<li>you have very limited needs to maintain scalabililty and availability
+							<li>you have enough engineers and a streamlined enough process that you can use deployment as configuration management 
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<section>
+						<h3>full management</h3>
+						<span style="font-size: 3em;">&amp;</span>
+						<h3>service-discovery</h3>
+					</section>
+					<section data-background="images/success_kid.jpg">
+						<h3 style="text-align: right; width: 100%; color: black;">This is extraordinary.</h3>
+					</section>
+					<section>
+						<h3>This is almost enough.</h3>
+					</section>
+					<section>
+						<h3><em>almost</em><br>enough</h3>
+						<img width="320" height="427" src="images/cant_reach.jpg">
+					</section>
+				</section>
+				<section>
+					<section data-background="images/drawbacks.jpg">
+					<!-- <h2>The drawbacks</h2> -->
+					</section>
+					<section>
+						<h3>nothing</h3>
+						<ol id="nothing">
+							<li class="fragment">does not grow beyond one application
+							<li class="fragment">unless every application is 100% independent
+							<li class="fragment">doesn’t even tackle tracking real or virtual hardware
+							<li class="fragment">almost always becomes...
+						</ol>
+					</section>
+					<section>
+						<h3>static references / spreadsheets</h3>
+						<ol id="hardcoding">
+							<li class="fragment">doesn’t change very quickly
+							<li class="fragment">unmanageable at scale
+							<li class="fragment">depends on humans
+							<li class="fragment">humans generally suck at this
+						</ol>
+					</section>
+					<section>
+						<h3>management and service discovery</h3>
+						<ol id="mgtdisc">
+							<li class="fragment">feels perfect
+							<li class="fragment"><em>not</em> perfect
+							<li class="fragment">computers miscommunicate
+							<li class="fragment">people miscommunicate
+						</ol>
+					</section>
+					<section>
+						<img src="images/deke.gif">
+						<h3>that feeling of</h3>
+					<h2>perfection</h2>
+					<h3>is a<br>systems management</h3>
+					<h2>deke</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>How?</h2>
+					</section>
+					<section>
+						<h3>Several approaches</h3>
+					</section>
+					<section>
+						<h3>Should be augmented with current knowledge</h3>
+					</section>
+					<section>
+						<h3>Cloud API</h3>
+					</section>
+					<section id="somethingfromnothing">
+						<h3>something from nothing</h3>
+						<ul>
+							<li class="fragment">broadcast
+							<li class="fragment">determined unicast
+							<li class="fragment">netstat
+							<li class="fragment">ps
+						</ul>
+					</section>
+					<section>
+						<h3>planning discovery</h3>
+						<ul>
+							<li class="fragment">LLDP
+							<li class="fragment">CDP
+						</ul>
+					</section>
+					<section>
+						<h3>external discovery mechanism</h3>
+						<ul>
+							<li class="fragment">CIM/WBEM
+							<li class="fragment">SNMP
+							<li class="fragment">SLP
+							<li class="fragment">WMI
+						</ul>
+					</section>
+					<section>
+						<h3>Discovery specific tools</h3>
+					</section>
+					<section>
+						<h3>Build it in</h3>
+					</section>
+					<section>
+						<h3>Interpolate</h3>
+					</section>
+				</section>
+				<section>
+					<section data-background="images/confusing_sign.jpg">
+					</section>
+					<section data-background="images/confusing_sign_dark.jpg">
+						<h2>5. What do you do with this information?</h2>
+					</section>
+					<section data-background="images/puzzles.jpg">
+						<h3>Mapping</h3><br><br><br><br><br><br><br>
+					</section>
+					<section data-background>
+						<h3>Configuration</h3>
+						<img src="images/acyclic_graph.svg">
+					</section>
+					<section data-background="images/security_camera.jpg" data-background-size="100%">
+						<h3>Monitoring</h3>
+					</section>
+				</section>
+
+				<section>
+					<h2>questions?</h2>
+				</section>
+
+				<section>
+				<h2>Photos</h2>
+				<ul>
+					<li>Wagner T. Cassimiro "Aranha"
+					<li>Duane Millitt “Michael Jackson Bad Vinyl”
+					<li>darwin Bell “nothing is nothing”
+					<li>fdecomite “Virtual Legos”
+					<li>The.Comedian “Transparent Lego Blocks”
+					<li>Geoffrey Galloway “Confusing Sign”
+					<li>paurian “who am I?”
+					<li>Bart “Magnif-eyed”
+					<li>Stephen "normal"
+					<li>Captn_Jack "Mud flats"
+				</ul>
+				</section>
+				<section>
+					<h1>THE END</h1>
+					<h3>BY Sean "Thor" Swehla</h3>
+					<p>@kitschy_synq</p>
+					<p>thor@digitalocean.com</p>
+					<p>http://www.digitalocean.com</p>
+				</section>
+				<section data-background="images/GOTO_Ams_Intro_Outro.png" data-background-size="100%">
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
